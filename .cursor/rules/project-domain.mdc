@@ -1,0 +1,66 @@
+---
+description: "CursorRuleTemplate" — 도메인·구현 상태 (library, 지침 템플릿 저장소)
+alwaysApply: true
+---
+
+# CursorRuleTemplate
+
+**타입:** `library`  
+Cursor 에이전트용 지침 템플릿 저장소. 원본은 `result/cursor-templates/`, **활성 지침은 `.cursor/`만** Cursor가 로드한다.
+
+## 구현 상태 (코드 기준)
+
+문서·채팅만 믿지 않는다. **`.cursor/rules/*.mdc`**, **`.cursor/skills/*/SKILL.md`** 에서 실제 파일·frontmatter를 확인.
+
+| 종류 | 식별자·경로 | 상태 | 비고 |
+|------|-------------|------|------|
+| 공통 규칙 | `.cursor/rules/instruction-ecosystem.mdc` 등 | 구현 | `result/cursor-templates/rules/`와 동기 유지 |
+| 스킬 | `.cursor/skills/task-start/SKILL.md` 등 | 구현 | |
+| 스택 오버레이 | `result/cursor-templates/overlays/stacks/*.mdc` | 템플릿 | 이식 시 `.cursor/rules/stack-*.mdc`로 복사 |
+| 환경 오버레이 | `result/cursor-templates/overlays/environments/*.mdc` | 템플릿 | 필요 시만 복사 |
+| domain 템플릿 | `result/cursor-templates/rules/project-domain.TEMPLATE.mdc` | 템플릿 | 이식 시 `project-domain.mdc`로 채움 |
+
+**목표 스펙(미구현 가능):** `result/README.md`, `result/examples/filled-*.md`
+
+**미구현·예정:** (grep·등록부 기준 유지)
+
+## 레이아웃
+
+| 항목 | 경로 |
+|------|------|
+| 진입 | `result/README.md` |
+| 앱 루트 | `result/cursor-templates` |
+| 공개 계약 등록 | `.cursor/rules/` (활성), `result/cursor-templates/rules/` (원본) |
+| 핸들러·어댑터 | N/A (애플리케이션 코드 없음) |
+| DTO·공개 타입 | N/A |
+| 서비스·도메인 | N/A |
+| 영속·인프라 | N/A |
+| 마이그레이션 | N/A |
+| 설정·DI | N/A |
+| 테스트 | N/A |
+
+## 환경·실행
+
+- 설정: N/A
+- 로컬: `result/README.md` 이식 절차 참고
+- 테스트: `echo "no test suite — template repo"`
+- RULE-02 검사: N/A
+
+## 작업 규칙
+
+1. **활성 지침 변경:** `.cursor/rules/`, `.cursor/skills/` — RULE-05·`@self-update` 또는 사용자 「커서 지침 업데이트」
+2. **원본 템플릿 변경:** `result/cursor-templates/` — 이식용; 변경 후 `.cursor/` 동기화 여부 사용자와 합의
+3. RULE-03: N/A (DB 없음)
+4. RULE-04: N/A (단일 repo, 금지 복제 경로 없음)
+5. 레이어·SOLID: `stack-conventions.mdc`, `solid-principles.mdc` (마크다운·mdc 편집 시)
+
+## 자주 하는 실수
+
+- `result/`만 수정하고 `.cursor/` 미반영 → Cursor가 지침을 로드하지 않음
+- `project-domain.TEMPLATE.mdc` 플레이스홀더를 `.cursor/`에 그대로 둠
+- `stack-conventions`·`solid-principles`의 `globs: "**/*"` 미조정
+
+## 지침 갱신
+
+- `@self-update` — diff 제안 후 승인
+- 「커서 지침 업데이트」 — `.cursor/rules/*.mdc` 동기화 (RULE-05 예외)
