@@ -1,2 +1,12 @@
 # 세션·개인 컨텍스트 (instruction-ecosystem.mdc 권장)
 .cursor/rules/agent-local.mdc
+
+# Dependencies & build
+node_modules
+dist
+*.local
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.DS_Store

@@ -1,0 +1,88 @@
+.page {
+  padding: calc(var(--header-h) + 2rem) 0 4rem;
+  min-height: 70vh;
+}
+
+.wrap {
+  max-width: 42rem;
+}
+
+.back {
+  display: inline-block;
+  font-size: 0.875rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+.back:hover {
+  color: var(--accent);
+}
+
+.header {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.header h1 {
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  margin-bottom: 1rem;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.block {
+  margin-bottom: 2.5rem;
+}
+
+.block h2 {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.block p {
+  color: var(--text-muted);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+
+.block ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  color: var(--text-muted);
+}
+
+.block li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.links a {
+  font-family: var(--font-mono);
+  font-size: 0.9375rem;
+}

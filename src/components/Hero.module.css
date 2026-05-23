@@ -1,0 +1,90 @@
+.hero {
+  min-height: calc(100vh - var(--header-h));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: calc(var(--header-h) + 3rem) 0 4rem;
+  position: relative;
+}
+
+.greeting {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.headline {
+  font-size: clamp(2.5rem, 7vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  max-width: 14ch;
+  margin-bottom: 1.25rem;
+}
+
+.headlineLine {
+  display: block;
+}
+
+.role {
+  font-size: 1.0625rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.dot {
+  opacity: 0.5;
+}
+
+.description {
+  max-width: 36rem;
+  font-size: 1.0625rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+  line-height: 1.7;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+}
+
+.detailLink {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-left: 0.25rem;
+}
+
+.detailLink:hover {
+  color: var(--accent);
+}
+
+.scrollHint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.scrollHint span {
+  display: block;
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  opacity: 0.5;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scaleY(0.85);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scaleY(1);
+  }
+}

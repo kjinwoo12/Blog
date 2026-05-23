@@ -1,0 +1,41 @@
+.section {
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.02) 50%, transparent);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+
+.card {
+  padding: 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: border-color 0.25s;
+}
+
+.card:hover {
+  border-color: rgba(94, 234, 212, 0.25);
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.card li {
+  padding: 0.35rem 0;
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+}
+
+.card li:last-child {
+  border-bottom: none;
+}
