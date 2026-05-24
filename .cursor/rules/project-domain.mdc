@@ -15,7 +15,8 @@ Cursor 에이전트용 지침 템플릿 저장소. 원본은 `result/cursor-temp
 | 종류 | 식별자·경로 | 상태 | 비고 |
 |------|-------------|------|------|
 | 공통 규칙 | `.cursor/rules/instruction-ecosystem.mdc` 등 | 구현 | `result/cursor-templates/rules/`와 동기 유지 |
-| 스킬 | `.cursor/skills/task-start/SKILL.md` 등 | 구현 | |
+| caveman 규칙 | `caveman-mode.mdc` + `instruction-ecosystem` 인라인 | 구현 | 이중 적용: 항상 주입 rule + `alwaysApply` |
+| 스킬 | `.cursor/skills/task-start/SKILL.md` 등 | 구현 | caveman 계열: `caveman`, `cavecrew`, `caveman-*` |
 | 스택 오버레이 | `result/cursor-templates/overlays/stacks/*.mdc` | 템플릿 | 이식 시 `.cursor/rules/stack-*.mdc`로 복사 |
 | 환경 오버레이 | `result/cursor-templates/overlays/environments/*.mdc` | 템플릿 | 필요 시만 복사 |
 | domain 템플릿 | `result/cursor-templates/rules/project-domain.TEMPLATE.mdc` | 템플릿 | 이식 시 `project-domain.mdc`로 채움 |

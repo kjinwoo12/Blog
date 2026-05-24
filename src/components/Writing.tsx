@@ -3,6 +3,8 @@ import { blogPosts } from '../data/portfolio';
 import styles from './Writing.module.css';
 
 export function Writing() {
+  if (blogPosts.length === 0) return null;
+
   return (
     <section id="writing" className={`section ${styles.section}`}>
       <div className="container">

@@ -1,21 +1,14 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { hero, site } from '../data/portfolio';
+import { hero, projects, site } from '../data/portfolio';
 import styles from './Hero.module.css';
 
 export function Hero() {
+  const featured = projects.find((p) => p.featured);
+
   return (
     <section className={styles.hero} aria-label="소개">
       <div className="container">
-        <motion.p
-          className={styles.greeting}
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          {hero.greeting}
-        </motion.p>
-
         <motion.h1
           className={styles.headline}
           initial={{ opacity: 0, y: 20 }}
@@ -58,12 +51,11 @@ export function Hero() {
           <a href="#projects" className="btn btn-primary">
             {hero.cta.projects}
           </a>
-          <a href="#contact" className="btn btn-ghost">
-            {hero.cta.contact}
-          </a>
-          <Link to="/project/featured-01" className={styles.detailLink}>
-            대표 작업 상세 →
-          </Link>
+          {featured && (
+            <Link to={`/project/${featured.id}`} className={styles.detailLink}>
+              대표 작업 상세 →
+            </Link>
+          )}
         </motion.div>
       </div>
 

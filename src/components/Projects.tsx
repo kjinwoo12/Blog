@@ -1,9 +1,11 @@
-import { featuredProjectId, projects } from '../data/portfolio';
+import { projects } from '../data/portfolio';
 import { ProjectCard } from './ProjectCard';
 import styles from './Projects.module.css';
 
 export function Projects() {
-  const featured = projects.find((p) => p.id === featuredProjectId) ?? projects[0];
+  if (projects.length === 0) return null;
+
+  const featured = projects.find((p) => p.featured) ?? projects[0];
   const rest = projects.filter((p) => p.id !== featured.id);
 
   const professional = rest.filter((p) => p.category === 'professional');

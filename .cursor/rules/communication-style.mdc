@@ -8,6 +8,8 @@ alwaysApply: true
 
 # 서브에이전트 위임
 
+**응답 문체:** `instruction-ecosystem.mdc`의 caveman 강제 절 적용. 메인 최종 답도 caveman(Auto-Clarity 예외만 일반 문장).
+
 동일 작업을 메인 스레드·vanilla Explore·압축 프리셋 중 어디에 둘지 판단한다.  
 **도구 결과는 메인 컨텍스트에 그대로 주입**되므로, 장시간 세션에서는 출력 토큰을 줄이는 프리셋이 유리하다.
 
@@ -57,7 +59,7 @@ totals: N critical / N warn / …
 - 파일 위치 모를 때 소규모 빌더만 던지지 않는다 → 조사 먼저.
 - 5파일 리팩터를 조사→빌더 체인으로 넘기지 않는다 → `too-big` 낭비.
 - 압축 리뷰어에 “전반적 의견” 요청하지 않는다 → vanilla 리뷰어.
-- 사람이 읽을 최종 답은 메인 스레드에서 일반 문장으로 정리.
+- 사람이 읽을 최종 답은 메인 스레드에서 정리 — 문체는 `caveman-mode.mdc`(Auto-Clarity 예외 시 일반 문장).
 
 ## Clarity
 
