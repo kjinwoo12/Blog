@@ -13,7 +13,7 @@ alwaysApply: true
 
 | 종류 | 식별자·경로 | 상태 | 비고 |
 |------|-------------|------|------|
-| 홈 섹션 | `src/pages/HomePage.tsx` | 구현 | Hero → About → Skills → Projects → Writing |
+| 홈 섹션 | `src/pages/HomePage.tsx` | 구현 | Hero → About → Skills → Projects |
 | 콘텐츠 | `src/data/portfolio.ts` | 구현 | Notion 원본을 여기로 옮김 |
 | 프로젝트 상세 | `src/pages/ProjectPage.tsx` | 구현 | `/project/:id` |
 | 배포 | `.github/workflows/deploy.yml` | 구현 | `main` push → GitHub Pages |
@@ -26,17 +26,21 @@ alwaysApply: true
 |------|------|
 | 진입 | `README.md` |
 | 앱 루트 | `src/` |
-| 콘텐츠·타입 | `src/data/portfolio.ts` (`site`, `hero`, `projects`, `blogPosts`, …) |
+| 콘텐츠·타입 | `src/data/portfolio.ts` (`site`, `hero`, `projects`, `navLinks`, `featuredProjectId`, …) |
 | 섹션 UI | `src/components/*.tsx` |
 | 라우트 | `src/pages/`, `src/App.tsx` |
 | 에이전트 조사 메모 | `.result/` (선택, 앱과 분리) |
 
 ## Projects 섹션 (분류 규칙)
 
-- **Highlighted:** `featuredProjectId` 1건 — 나머지 그룹에서 제외.
 - **Professional Projects:** `category === 'professional'`.
 - **Personal work:** `category === 'personal'` 또는 `'web'` (웹도 개인 작업으로 묶음).
+- **대표 프로젝트:** `featuredProjectId` — Projects 그리드에 포함; Hero 링크·`/project/:id` 상세만 별도.
 - UI 제목: `Projects.tsx` · 카드 배지: `ProjectCard.tsx` — 라벨을 바꿀 때 **둘 다** 맞출 것.
+
+## 제거된 섹션 (재추가 금지, 사용자 요청 전)
+
+- Contact, Writing — 컴포넌트·`navLinks`·관련 데이터 없음.
 
 ## 환경·실행
 
@@ -54,6 +58,7 @@ alwaysApply: true
 ## 자주 하는 실수
 
 - `project-domain.mdc`를 템플릿 repo 설명으로 둔 채 `src/` 작업
+- Contact·Writing·Highlighted 섹션을 task-done 이전 스펙으로 되돌림
 - `web` 카테고리를 UI에서 별도 그룹으로 분리 (의도: Personal work)
 - Notion만 수정하고 `portfolio.ts` 미반영
 
