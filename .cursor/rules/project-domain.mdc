@@ -16,6 +16,8 @@ alwaysApply: true
 | 홈 섹션 | `src/pages/HomePage.tsx` | 구현 | Hero → About → Skills → Projects |
 | 콘텐츠 | `src/data/portfolio.ts` | 구현 | Notion 경력·프로젝트 반영 완료 (2025-05) |
 | 프로젝트 상세 | `src/pages/ProjectPage.tsx` | 구현 | `/project/:id` |
+| 프로젝트 사진 | `projects[].images`, Photos 섹션 | 구현 | `publicUrl()` · 갤러리는 `div`+`img` |
+| 정적 리소스 | `public/resources/` | 구현 | `projects/`, `site/` |
 | 배포 | `.github/workflows/deploy.yml` | 구현 | `main` push → GitHub Pages |
 | Cursor 지침 | `.cursor/rules/`, `.cursor/skills/` | 구현 | RULE-05: 무단 편집 금지 |
 | 테스트 | — | 없음 | `npm run lint` 만 |
@@ -29,6 +31,8 @@ alwaysApply: true
 | 콘텐츠·타입 | `src/data/portfolio.ts` (`site`, `hero`, `projects`, `navLinks`, `featuredProjectId`, …) |
 | 섹션 UI | `src/components/*.tsx` |
 | 라우트 | `src/pages/`, `src/App.tsx` |
+| 정적 파일 | `public/resources/projects/`, `public/resources/site/` |
+| `base` URL 헬퍼 | `src/lib/publicUrl.ts` |
 | 에이전트 조사 메모 | `.result/` (선택, 앱과 분리) |
 
 ## Projects 섹션 (분류 규칙)
@@ -64,6 +68,12 @@ export const about = {
 3. `featuredProjectId` 변경 시 해당 `id`가 `projects`에 있고 Hero 링크가 깨지지 않는지 확인.
 4. 에이전트 할 일 URL은 `.result/Todo.md`에 둘 수 있음 (앱 빌드와 무관).
 
+## 프로젝트 이미지
+
+- 데이터: `projects[].images?: { src, alt }[]` — `src`는 `public/` 기준(`resources/projects/…`), 확장자는 **WebP** 권장.
+- 표시: `ProjectPage` Photos — `publicUrl(image.src)`; 사진만 나열할 때 **`ul`/`li` 사용하지 않음**.
+- 추가 절차: 원본을 `public/resources/projects/`에 넣은 뒤 `npm run optimize-images`(JPG/PNG→WebP, max 1400px, 원본 삭제) → `portfolio.ts`에 `.webp` 경로·`alt` 반영.
+
 ## 제거된 섹션 (재추가 금지, 사용자 요청 전)
 
 - Contact, Writing — 컴포넌트·`navLinks`·관련 데이터 없음.
@@ -72,6 +82,7 @@ export const about = {
 
 - 로컬: `npm install` → `npm run dev` (Bash PATH 이슈 시 README·`dev:bash`)
 - 빌드: `npm run build` · 배포: GitHub Actions + `vite.config.ts` `base`
+- 이미지 최적화: `npm run optimize-images` (`scripts/optimize-images.mjs`, devDependency `sharp`)
 - RULE-02: 클라이언트 SPA — 메인 스레드 장시간 작업 금지 (일반 웹 관례)
 - RULE-03: N/A (DB 없음)
 
@@ -90,6 +101,9 @@ export const about = {
 - `Hero.tsx`에 `/project/featured-01` 등 **존재하지 않는 id** 하드코딩
 - `featuredProjectId`와 `projects[].id` 불일치
 - about·hero 등 **방문자 문단**에 `portfolio.ts` 경로·「업데이트하세요」 유지보수 문구 (→ 주석·README)
+- 4K JPG를 `portfolio.ts`에 직접 연결하거나 `optimize-images` 없이 커밋 (용량·LCP 악화)
+- 이미지 `src`에 `/` 접두·`BASE_URL` 누락(로컬/배포 경로 불일치) — 반드시 `publicUrl()`
+- Photos 갤러리에 의미 없는 `ul`/`li` 사용
 
 ## 지침 갱신
 

@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { PhotoCarousel } from '../components/PhotoCarousel';
 import { projects } from '../data/portfolio';
 import styles from './ProjectPage.module.css';
 
@@ -47,6 +48,28 @@ export function ProjectPage() {
           <p>{project.summary}</p>
         </section>
 
+        {project.videoEmbedUrl && (
+          <section className={styles.block}>
+            <h2>Video</h2>
+            <div className={styles.videoEmbed}>
+              <iframe
+                src={project.videoEmbedUrl}
+                title={`${project.title} 영상`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
+            </div>
+          </section>
+        )}
+
+        {project.images && project.images.length > 0 && (
+          <section className={styles.block}>
+            <h2>Photos</h2>
+            <PhotoCarousel images={project.images} />
+          </section>
+        )}
+
         <section className={styles.block}>
           <h2>Contributions</h2>
           <ul>
@@ -55,6 +78,24 @@ export function ProjectPage() {
             ))}
           </ul>
         </section>
+
+        {project.detailSections && project.detailSections.length > 0 && (
+          <section className={styles.block}>
+            <h2>자세한 설명</h2>
+            <div className={styles.details}>
+                {project.detailSections.map((section) => (
+                  <details key={section.title} className={styles.detail}>
+                    <summary>{section.title}</summary>
+                    <div className={styles.detailBody}>
+                      {section.paragraphs.map((paragraph, index) => (
+                        <p key={`${section.title}-${index}`}>{paragraph}</p>
+                      ))}
+                    </div>
+                  </details>
+                ))}
+              </div>
+          </section>
+        )}
 
         {project.links && project.links.length > 0 && (
           <section className={styles.block}>
