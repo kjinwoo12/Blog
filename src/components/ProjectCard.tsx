@@ -9,9 +9,9 @@ interface Props {
 }
 
 const categoryLabel: Record<Project['category'], string> = {
-  professional: 'Professional',
-  personal: 'Personal',
-  web: 'Web',
+  professional: 'Professional Projects',
+  personal: 'Personal work',
+  web: 'Personal work',
 };
 
 export function ProjectCard({ project, size = 'default' }: Props) {

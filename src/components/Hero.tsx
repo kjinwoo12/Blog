@@ -58,9 +58,6 @@ export function Hero() {
           <a href="#projects" className="btn btn-primary">
             {hero.cta.projects}
           </a>
-          <a href="#contact" className="btn btn-ghost">
-            {hero.cta.contact}
-          </a>
           <Link to="/project/featured-01" className={styles.detailLink}>
             대표 작업 상세 →
           </Link>

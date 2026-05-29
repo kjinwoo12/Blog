@@ -4,8 +4,6 @@ import { Hero } from '../components/Hero';
 import { About } from '../components/About';
 import { Skills } from '../components/Skills';
 import { Projects } from '../components/Projects';
-import { Writing } from '../components/Writing';
-import { Contact } from '../components/Contact';
 
 export function HomePage() {
   const { hash } = useLocation();
@@ -24,8 +22,6 @@ export function HomePage() {
       <About />
       <Skills />
       <Projects />
-      <Writing />
-      <Contact />
     </>
   );
 }

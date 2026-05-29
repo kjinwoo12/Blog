@@ -1,13 +1,10 @@
-import { featuredProjectId, projects } from '../data/portfolio';
+import { projects } from '../data/portfolio';
 import { ProjectCard } from './ProjectCard';
 import styles from './Projects.module.css';
 
 export function Projects() {
-  const featured = projects.find((p) => p.id === featuredProjectId) ?? projects[0];
-  const rest = projects.filter((p) => p.id !== featured.id);
-
-  const professional = rest.filter((p) => p.category === 'professional');
-  const personal = rest.filter((p) => p.category === 'personal' || p.category === 'web');
+  const professional = projects.filter((p) => p.category === 'professional');
+  const personal = projects.filter((p) => p.category === 'personal' || p.category === 'web');
 
   return (
     <section id="projects" className="section">
@@ -15,14 +12,9 @@ export function Projects() {
         <p className="section-label">Projects</p>
         <h2 className="section-title">작업물</h2>
 
-        <div className={styles.featured}>
-          <h3 className={styles.groupTitle}>Highlighted</h3>
-          <ProjectCard project={featured} size="large" />
-        </div>
-
         {professional.length > 0 && (
           <div className={styles.group}>
-            <h3 className={styles.groupTitle}>Professional</h3>
+            <h3 className={styles.groupTitle}>Professional Projects</h3>
             <div className={styles.grid}>
               {professional.map((p) => (
                 <ProjectCard key={p.id} project={p} />
@@ -33,7 +25,7 @@ export function Projects() {
 
         {personal.length > 0 && (
           <div className={styles.group}>
-            <h3 className={styles.groupTitle}>Personal & Web</h3>
+            <h3 className={styles.groupTitle}>Personal work</h3>
             <div className={styles.grid}>
               {personal.map((p) => (
                 <ProjectCard key={p.id} project={p} />

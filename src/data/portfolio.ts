@@ -20,16 +20,6 @@ export interface Project {
   accent: string;
 }
 
-export interface BlogPost {
-  id: string;
-  title: string;
-  excerpt: string;
-  date: string;
-  readTime: string;
-  tags: string[];
-  href: string;
-}
-
 export interface SkillGroup {
   label: string;
   items: string[];
@@ -51,7 +41,7 @@ export const hero = {
   headline: ['게임 클라이언트와', '웹 경험을 설계합니다'],
   description:
     '언리얼 엔진과 유니티에서 게임플레이·시스템을 구현하고, React 기반 웹으로 도구와 포트폴리오를 만듭니다. 기술 블로그처럼 읽히는 문서화와, 플레이어블한 완성도를 함께 추구합니다.',
-  cta: { projects: '프로젝트 보기', contact: '연락하기' },
+  cta: { projects: '프로젝트 보기' },
 };
 
 export const about = {
@@ -131,32 +121,8 @@ export const projects: Project[] = [
   },
 ];
 
-export const blogPosts: BlogPost[] = [
-  {
-    id: 'post-01',
-    title: '기술 글 제목 (예: Lyra 애니메이션 적용 노트)',
-    excerpt:
-      'Unreal Tech Blog·nullbus처럼 문제 → 접근 → 결과 순으로 정리한 글 요약. Notion 또는 외부 블로그 링크로 연결하세요.',
-    date: '2025-01-01',
-    readTime: '8 min',
-    tags: ['Unreal', 'Animation'],
-    href: 'https://blog.nullbus.net/',
-  },
-  {
-    id: 'post-02',
-    title: '두 번째 글 / 문서',
-    excerpt: '엔진·웹·워크플로 중 하나를 깊게 다룬 포스트.',
-    date: '2024-06-15',
-    readTime: '5 min',
-    tags: ['Unity', 'Tools'],
-    href: '#',
-  },
-];
-
 export const navLinks = [
   { id: 'about', label: 'About' },
   { id: 'skills', label: 'Skills' },
   { id: 'projects', label: 'Projects' },
-  { id: 'writing', label: 'Writing' },
-  { id: 'contact', label: 'Contact' },
 ] as const;
