@@ -14,7 +14,7 @@ alwaysApply: true
 | 종류 | 식별자·경로 | 상태 | 비고 |
 |------|-------------|------|------|
 | 홈 섹션 | `src/pages/HomePage.tsx` | 구현 | Hero → About → Skills → Projects |
-| 콘텐츠 | `src/data/portfolio.ts` | 구현 | Notion 원본을 여기로 옮김 |
+| 콘텐츠 | `src/data/portfolio.ts` | 구현 | Notion 경력·프로젝트 반영 완료 (2025-05) |
 | 프로젝트 상세 | `src/pages/ProjectPage.tsx` | 구현 | `/project/:id` |
 | 배포 | `.github/workflows/deploy.yml` | 구현 | `main` push → GitHub Pages |
 | Cursor 지침 | `.cursor/rules/`, `.cursor/skills/` | 구현 | RULE-05: 무단 편집 금지 |
@@ -33,10 +33,17 @@ alwaysApply: true
 
 ## Projects 섹션 (분류 규칙)
 
-- **Professional Projects:** `category === 'professional'`.
+- **Professional Projects:** `category === 'professional'`. Notion **경력** 페이지(회사·강의·파트타임)를 항목으로 둔다. 게임 타이틀 전용 섹션이 아님.
 - **Personal work:** `category === 'personal'` 또는 `'web'` (웹도 개인 작업으로 묶음).
-- **대표 프로젝트:** `featuredProjectId` — Projects 그리드에 포함; Hero 링크·`/project/:id` 상세만 별도.
+- **대표 프로젝트:** `featuredProjectId` — 그리드에도 포함. `Hero.tsx`는 id 하드코딩 금지, `featuredProjectId` import 후 `/project/:id` 링크. 현재 값 `ue5-perspective-minimap` (`featured: true`).
 - UI 제목: `Projects.tsx` · 카드 배지: `ProjectCard.tsx` — 라벨을 바꿀 때 **둘 다** 맞출 것.
+
+## 콘텐츠 동기화
+
+1. Notion(`site.notionSource`, 개별 페이지 URL)에서 요약·기여·기간·링크 추출.
+2. `src/data/portfolio.ts`의 `projects[]`에 반영 — 경력 → `professional`, 프로젝트·OSS → `personal` / `web`.
+3. `featuredProjectId` 변경 시 해당 `id`가 `projects`에 있고 Hero 링크가 깨지지 않는지 확인.
+4. 에이전트 할 일 URL은 `.result/Todo.md`에 둘 수 있음 (앱 빌드와 무관).
 
 ## 제거된 섹션 (재추가 금지, 사용자 요청 전)
 
@@ -61,6 +68,8 @@ alwaysApply: true
 - Contact·Writing·Highlighted 섹션을 task-done 이전 스펙으로 되돌림
 - `web` 카테고리를 UI에서 별도 그룹으로 분리 (의도: Personal work)
 - Notion만 수정하고 `portfolio.ts` 미반영
+- `Hero.tsx`에 `/project/featured-01` 등 **존재하지 않는 id** 하드코딩
+- `featuredProjectId`와 `projects[].id` 불일치
 
 ## 지침 갱신
 

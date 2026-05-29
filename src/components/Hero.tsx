@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { hero, site } from '../data/portfolio';
+import { featuredProjectId, hero, site } from '../data/portfolio';
 import styles from './Hero.module.css';
 
 export function Hero() {
@@ -58,7 +58,7 @@ export function Hero() {
           <a href="#projects" className="btn btn-primary">
             {hero.cta.projects}
           </a>
-          <Link to="/project/featured-01" className={styles.detailLink}>
+          <Link to={`/project/${featuredProjectId}`} className={styles.detailLink}>
             대표 작업 상세 →
           </Link>
         </motion.div>
