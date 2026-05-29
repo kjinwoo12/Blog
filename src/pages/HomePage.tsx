@@ -4,6 +4,7 @@ import { Hero } from '../components/Hero';
 import { About } from '../components/About';
 import { Skills } from '../components/Skills';
 import { Projects } from '../components/Projects';
+import { ScrollHint } from '../components/ScrollHint';
 
 export function HomePage() {
   const { hash } = useLocation();
@@ -22,6 +23,7 @@ export function HomePage() {
       <About />
       <Skills />
       <Projects />
+      <ScrollHint />
     </>
   );
 }

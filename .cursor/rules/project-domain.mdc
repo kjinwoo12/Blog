@@ -38,6 +38,25 @@ alwaysApply: true
 - **대표 프로젝트:** `featuredProjectId` — 그리드에도 포함. `Hero.tsx`는 id 하드코딩 금지, `featuredProjectId` import 후 `/project/:id` 링크. 현재 값 `ue5-perspective-minimap` (`featured: true`).
 - UI 제목: `Projects.tsx` · 카드 배지: `ProjectCard.tsx` — 라벨을 바꿀 때 **둘 다** 맞출 것.
 
+## 공개 UI 문구 (방문자용)
+
+`hero`, `about.paragraphs`, `projects[]` 요약·본문 등 **화면에 렌더되는 문자열**은 방문자용만 둔다.
+
+**금지 (UI·데이터 문자열 값):**
+
+- 저장소·파일 경로 (`src/data/portfolio.ts` 등)
+- 「여기서 업데이트하세요」류 유지보수·에이전트 지시
+- placeholder·TODO·내부 동기화 절차 설명
+
+**허용 위치:** `portfolio.ts` **주석**, `README.md`, `.result/`, 아래 「콘텐츠 동기화」.
+
+```ts
+// 세부 수치·스크린샷·링크: Notion 동기화 후 projects[]·about 문단 갱신.
+export const about = {
+  paragraphs: ['…방문자에게 읽히는 문장만…'],
+};
+```
+
 ## 콘텐츠 동기화
 
 1. Notion(`site.notionSource`, 개별 페이지 URL)에서 요약·기여·기간·링크 추출.
@@ -70,6 +89,7 @@ alwaysApply: true
 - Notion만 수정하고 `portfolio.ts` 미반영
 - `Hero.tsx`에 `/project/featured-01` 등 **존재하지 않는 id** 하드코딩
 - `featuredProjectId`와 `projects[].id` 불일치
+- about·hero 등 **방문자 문단**에 `portfolio.ts` 경로·「업데이트하세요」 유지보수 문구 (→ 주석·README)
 
 ## 지침 갱신
 

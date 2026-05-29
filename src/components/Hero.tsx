@@ -63,10 +63,6 @@ export function Hero() {
           </Link>
         </motion.div>
       </div>
-
-      <div className={styles.scrollHint} aria-hidden>
-        <span />
-      </div>
     </section>
   );
 }

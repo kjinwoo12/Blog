@@ -39,11 +39,12 @@ export const hero = {
   cta: { projects: '프로젝트 보기' },
 };
 
+// 세부 수치·스크린샷·링크: Notion 동기화 후 projects[]·about 문단 갱신.
 export const about = {
   paragraphs: [
     '게임 엔진(Unity, Unreal)에서 캐릭터·전투·UI 시스템을 다루며, 팀과 개인 프로젝트 모두에서 설계부터 폴리싱까지 경험했습니다.',
     '웹(React, TypeScript)으로는 포트폴리오·내부 도구·문서 사이트를 구축하며, 엔진 기술 글(UE Tech Blog, nullbus 스타일)처럼 구조화된 글쓰기를 선호합니다.',
-    '아래 프로젝트·글 목록은 Notion 포트폴리오를 기준으로 구성되어 있습니다. 세부 수치·스크린샷·링크는 `src/data/portfolio.ts`에서 업데이트하세요.',
+    '아래 프로젝트·경력 목록은 Notion 포트폴리오를 바탕으로 정리했습니다.',
   ],
 };
 
