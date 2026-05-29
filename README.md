@@ -29,9 +29,9 @@ export PATH="/c/Program Files/nodejs:$PATH"
 
 1. 저장소 **Settings → Pages → Build and deployment** 에서 **GitHub Actions** 선택
 2. `main` 브랜치에 push 시 [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) 이 빌드·배포
-3. 사이트 URL: `https://kjinwoo12.github.io/Portfolio/`
+3. 사이트 URL: `https://kjinwoo12.github.io/Blog/`
 
-> 저장소 이름이 `Portfolio` 가 아니면 `vite.config.ts` 의 `base` 경로를 맞춰 수정하세요.
+> 저장소 이름이 `Blog` 가 아니면 `vite.config.ts` 의 `base` 경로를 맞춰 수정하세요.
 
 ## 스택
 

@@ -3,7 +3,7 @@ import { join } from 'node:path';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-const base = process.env.GITHUB_PAGES === 'true' ? '/Portfolio/' : '/';
+const base = process.env.GITHUB_PAGES === 'true' ? '/Blog/' : '/';
 
 /** GitHub Pages SPA — deep link 시 404.html → index.html */
 function ghPagesSpaFallback() {
