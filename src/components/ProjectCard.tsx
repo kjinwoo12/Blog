@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import type { Project } from '../data/portfolio';
+import { publicUrl } from '../lib/publicUrl';
 import styles from './ProjectCard.module.css';
 
 interface Props {
@@ -15,25 +16,41 @@ const categoryLabel: Record<Project['category'], string> = {
 };
 
 export function ProjectCard({ project, size = 'default' }: Props) {
+  const location = useLocation();
+  const cover = project.images?.[0];
+
   return (
     <Link
       to={`/project/${project.id}`}
-      className={`${styles.card} ${size === 'large' ? styles.large : ''}`}
+      state={{ background: location }}
+      className={`${styles.card} ${size === 'large' ? styles.large : ''} ${cover ? styles.hasMedia : ''}`}
       style={{ '--accent': project.accent } as CSSProperties}
     >
-      <div className={styles.glow} aria-hidden />
-      <span className={styles.category}>{categoryLabel[project.category]}</span>
-      <h3 className={styles.title}>{project.title}</h3>
-      <p className={styles.subtitle}>{project.subtitle}</p>
-      <div className={styles.tags}>
-        {project.tags.map((tag) => (
-          <span key={tag} className="tag">
-            {tag}
-          </span>
-        ))}
+      {cover && (
+        <>
+          <div
+            className={styles.media}
+            style={{ backgroundImage: `url(${publicUrl(cover.src)})` }}
+            aria-hidden
+          />
+          <div className={styles.mediaOverlay} aria-hidden />
+        </>
+      )}
+      {!cover && <div className={styles.glow} aria-hidden />}
+      <div className={styles.content}>
+        <span className={styles.category}>{categoryLabel[project.category]}</span>
+        <h3 className={styles.title}>{project.title}</h3>
+        <p className={styles.subtitle}>{project.subtitle}</p>
+        <div className={styles.tags}>
+          {project.tags.map((tag) => (
+            <span key={tag} className="tag">
+              {tag}
+            </span>
+          ))}
+        </div>
+        <p className={styles.summary}>{project.summary}</p>
+        <span className={styles.more}>자세히 보기 →</span>
       </div>
-      <p className={styles.summary}>{project.summary}</p>
-      <span className={styles.more}>자세히 보기 →</span>
     </Link>
   );
 }

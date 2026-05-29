@@ -119,7 +119,7 @@ export const projects: Project[] = [
     category: 'professional',
     tags: ['React', 'Electron', 'Node.js', 'Stable Diffusion', 'OpenAI'],
     summary:
-      '캐릭터·영화 시나리오 컨셉아트를 위한 생성형 AI 이미지 툴 프로토타입을 개발했습니다. React와 Electron 기반 SPA로 구현했습니다.',
+      'React와 Electron 기반 SPA로 캐릭터·영화 시나리오 컨셉아트를 위한 생성형 AI 이미지 툴 프로토타입을 개발했습니다.',
     highlights: [
       '자연어를 그림 생성에 적합한 프롬프트로 변환',
       'Stable Diffusion·DALL·E API로 이미지 생성·부분 수정·확장',
@@ -177,6 +177,10 @@ export const projects: Project[] = [
       {
         src: 'resources/projects/AkaAi_01.webp',
         alt: 'Musio AI 영어 대화 로봇',
+      },
+      {
+        src: 'resources/projects/AkaAi_02.webp',
+        alt: 'Sophy OID 센서 — ABC 학습 카드 콘텐츠',
       },
       {
         src: 'resources/projects/AkaAi_ResmartApp_01.webp',

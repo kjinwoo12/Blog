@@ -54,7 +54,14 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.38 }}
         >
-          <a href="#projects" className="btn btn-primary">
+          <a
+            href="#projects"
+            className="btn btn-primary"
+            onClick={(event) => {
+              event.preventDefault();
+              document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
             {hero.cta.projects}
           </a>
         </motion.div>

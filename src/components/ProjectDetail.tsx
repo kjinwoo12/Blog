@@ -1,35 +1,22 @@
 import type { CSSProperties } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { PhotoCarousel } from '../components/PhotoCarousel';
-import { projects } from '../data/portfolio';
-import styles from './ProjectPage.module.css';
+import type { Project } from '../data/portfolio';
+import { PhotoCarousel } from './PhotoCarousel';
+import styles from '../pages/ProjectPage.module.css';
 
-export function ProjectPage() {
-  const { id } = useParams<{ id: string }>();
-  const project = projects.find((p) => p.id === id);
+interface Props {
+  project: Project;
+}
 
-  if (!project) {
-    return (
-      <div className={`container ${styles.wrap}`}>
-        <p>프로젝트를 찾을 수 없습니다.</p>
-        <Link to="/">← 홈으로</Link>
-      </div>
-    );
-  }
-
+export function ProjectDetail({ project }: Props) {
   return (
     <article
       className={styles.page}
       style={{ '--accent': project.accent } as CSSProperties}
     >
-      <div className={`container ${styles.wrap}`}>
-        <Link to="/#projects" className={styles.back}>
-          ← 프로젝트 목록
-        </Link>
-
+      <div className={styles.wrap}>
         <header className={styles.header}>
           <p className={styles.eyebrow}>{project.subtitle}</p>
-          <h1>{project.title}</h1>
+          <h1 id="project-title">{project.title}</h1>
           <div className={styles.meta}>
             {project.role && <span>{project.role}</span>}
             {project.period && <span>{project.period}</span>}
@@ -83,17 +70,17 @@ export function ProjectPage() {
           <section className={styles.block}>
             <h2>자세한 설명</h2>
             <div className={styles.details}>
-                {project.detailSections.map((section) => (
-                  <details key={section.title} className={styles.detail}>
-                    <summary>{section.title}</summary>
-                    <div className={styles.detailBody}>
-                      {section.paragraphs.map((paragraph, index) => (
-                        <p key={`${section.title}-${index}`}>{paragraph}</p>
-                      ))}
-                    </div>
-                  </details>
-                ))}
-              </div>
+              {project.detailSections.map((section) => (
+                <details key={section.title} className={styles.detail}>
+                  <summary>{section.title}</summary>
+                  <div className={styles.detailBody}>
+                    {section.paragraphs.map((paragraph, index) => (
+                      <p key={`${section.title}-${index}`}>{paragraph}</p>
+                    ))}
+                  </div>
+                </details>
+              ))}
+            </div>
           </section>
         )}
 
