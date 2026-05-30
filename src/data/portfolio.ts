@@ -70,15 +70,56 @@ export const about = {
 export const skillGroups: SkillGroup[] = [
   {
     label: 'Game',
-    items: ['Unreal Engine 5', 'Unity', 'C++', 'C#', 'Blueprint', 'Gameplay Systems'],
+    items: [
+      'Unreal Engine',
+      'Unity',
+      'C++',
+      'C#',
+      'Blueprint',
+      'Lyra Framework',
+      'Gameplay Ability System',
+      'Multiplayer & Networking',
+      'OpenGL',
+      'DirectX',
+    ],
   },
   {
-    label: 'Web',
-    items: ['React', 'TypeScript', 'Vite', 'GitHub Pages', 'REST APIs'],
+    label: 'Web & Mobile',
+    items: [
+      'React',
+      'TypeScript',
+      'JavaScript',
+      'Angular',
+      'Vite',
+      'Electron',
+      'Node.js',
+      'Android / AOSP',
+      'Java',
+    ],
+  },
+  {
+    label: 'Cloud & AI',
+    items: [
+      'AWS (Lambda, S3, DynamoDB)',
+      'OpenAI API',
+      'Stable Diffusion',
+      'Python / Flask',
+    ],
   },
   {
     label: 'Tools & Workflow',
-    items: ['Git', 'Git Branching Management', 'Cursor', 'Technical Writing', 'Profiling'],
+    items: [
+      'Git & git-flow',
+      'Photon',
+      'AR (GPS)',
+      'libGDX',
+      'FFmpeg',
+      'Localization',
+      'GitHub Pages',
+      'Cursor',
+      'Technical Writing',
+      'Profiling',
+    ],
   },
 ];
 
