@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { hero, projects, site } from '../data/portfolio';
+import { hero, site } from '../data/portfolio';
 import styles from './Hero.module.css';
 
 export function Hero() {
@@ -48,19 +47,17 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.38 }}
         >
-          <a href="#projects" className="btn btn-primary">
+          <a
+            href="#projects"
+            className="btn btn-primary"
+            onClick={(event) => {
+              event.preventDefault();
+              document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
             {hero.cta.projects}
           </a>
-          {featured && (
-            <Link to={`/project/${featured.id}`} className={styles.detailLink}>
-              대표 작업 상세 →
-            </Link>
-          )}
         </motion.div>
-      </div>
-
-      <div className={styles.scrollHint} aria-hidden>
-        <span />
       </div>
     </section>
   );

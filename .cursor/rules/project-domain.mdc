@@ -1,65 +1,109 @@
 ---
-description: "CursorRuleTemplate" — 도메인·구현 상태 (library, 지침 템플릿 저장소)
+description: 김진우 포트폴리오 — React SPA 도메인·콘텐츠·레이아웃
 alwaysApply: true
 ---
 
-# CursorRuleTemplate
+# Portfolio (김진우)
 
-**타입:** `library`  
-Cursor 에이전트용 지침 템플릿 저장소. 원본은 `result/cursor-templates/`, **활성 지침은 `.cursor/`만** Cursor가 로드한다.
+**타입:** `web-app` — React 19 + Vite 6 + TypeScript, GitHub Pages SPA.
 
 ## 구현 상태 (코드 기준)
 
-문서·채팅만 믿지 않는다. **`.cursor/rules/*.mdc`**, **`.cursor/skills/*/SKILL.md`** 에서 실제 파일·frontmatter를 확인.
+문서·채팅만 믿지 않는다. `src/data/portfolio.ts`, `src/components/`, `package.json`으로 확인.
 
 | 종류 | 식별자·경로 | 상태 | 비고 |
 |------|-------------|------|------|
-| 공통 규칙 | `.cursor/rules/instruction-ecosystem.mdc` 등 | 구현 | `result/cursor-templates/rules/`와 동기 유지 |
-| caveman 규칙 | `caveman-mode.mdc` + `instruction-ecosystem` 인라인 | 구현 | 이중 적용: 항상 주입 rule + `alwaysApply` |
-| 스킬 | `.cursor/skills/task-start/SKILL.md` 등 | 구현 | caveman 계열: `caveman`, `cavecrew`, `caveman-*` |
-| 스택 오버레이 | `result/cursor-templates/overlays/stacks/*.mdc` | 템플릿 | 이식 시 `.cursor/rules/stack-*.mdc`로 복사 |
-| 환경 오버레이 | `result/cursor-templates/overlays/environments/*.mdc` | 템플릿 | 필요 시만 복사 |
-| domain 템플릿 | `result/cursor-templates/rules/project-domain.TEMPLATE.mdc` | 템플릿 | 이식 시 `project-domain.mdc`로 채움 |
-
-**목표 스펙(미구현 가능):** `result/README.md`, `result/examples/filled-*.md`
-
-**미구현·예정:** (grep·등록부 기준 유지)
+| 홈 섹션 | `src/pages/HomePage.tsx` | 구현 | Hero → About → Skills → Projects |
+| 콘텐츠 | `src/data/portfolio.ts` | 구현 | Notion 경력·프로젝트 반영 완료 (2025-05) |
+| 프로젝트 상세 | `src/pages/ProjectPage.tsx` | 구현 | `/project/:id` |
+| 프로젝트 사진 | `projects[].images`, Photos 섹션 | 구현 | `publicUrl()` · 갤러리는 `div`+`img` |
+| 정적 리소스 | `public/resources/` | 구현 | `projects/`, `site/` |
+| 배포 | `.github/workflows/deploy.yml` | 구현 | `main` push → GitHub Pages |
+| Cursor 지침 | `.cursor/rules/`, `.cursor/skills/` | 구현 | RULE-05: 무단 편집 금지 |
+| 테스트 | — | 없음 | `npm run lint` 만 |
 
 ## 레이아웃
 
 | 항목 | 경로 |
 |------|------|
-| 진입 | `result/README.md` |
-| 앱 루트 | `result/cursor-templates` |
-| 공개 계약 등록 | `.cursor/rules/` (활성), `result/cursor-templates/rules/` (원본) |
-| 핸들러·어댑터 | N/A (애플리케이션 코드 없음) |
-| DTO·공개 타입 | N/A |
-| 서비스·도메인 | N/A |
-| 영속·인프라 | N/A |
-| 마이그레이션 | N/A |
-| 설정·DI | N/A |
-| 테스트 | N/A |
+| 진입 | `README.md` |
+| 앱 루트 | `src/` |
+| 콘텐츠·타입 | `src/data/portfolio.ts` (`site`, `hero`, `projects`, `navLinks`, `featuredProjectId`, …) |
+| 섹션 UI | `src/components/*.tsx` |
+| 라우트 | `src/pages/`, `src/App.tsx` |
+| 정적 파일 | `public/resources/projects/`, `public/resources/site/` |
+| `base` URL 헬퍼 | `src/lib/publicUrl.ts` |
+| 에이전트 조사 메모 | `.result/` (선택, 앱과 분리) |
+
+## Projects 섹션 (분류 규칙)
+
+- **Professional Projects:** `category === 'professional'`. Notion **경력** 페이지(회사·강의·파트타임)를 항목으로 둔다. 게임 타이틀 전용 섹션이 아님.
+- **Personal work:** `category === 'personal'` 또는 `'web'` (웹도 개인 작업으로 묶음).
+- **대표 프로젝트:** `featuredProjectId` — 그리드에도 포함. `Hero.tsx`는 id 하드코딩 금지, `featuredProjectId` import 후 `/project/:id` 링크. 현재 값 `ue5-perspective-minimap` (`featured: true`).
+- UI 제목: `Projects.tsx` · 카드 배지: `ProjectCard.tsx` — 라벨을 바꿀 때 **둘 다** 맞출 것.
+
+## 공개 UI 문구 (방문자용)
+
+`hero`, `about.paragraphs`, `projects[]` 요약·본문 등 **화면에 렌더되는 문자열**은 방문자용만 둔다.
+
+**금지 (UI·데이터 문자열 값):**
+
+- 저장소·파일 경로 (`src/data/portfolio.ts` 등)
+- 「여기서 업데이트하세요」류 유지보수·에이전트 지시
+- placeholder·TODO·내부 동기화 절차 설명
+
+**허용 위치:** `portfolio.ts` **주석**, `README.md`, `.result/`, 아래 「콘텐츠 동기화」.
+
+```ts
+// 세부 수치·스크린샷·링크: Notion 동기화 후 projects[]·about 문단 갱신.
+export const about = {
+  paragraphs: ['…방문자에게 읽히는 문장만…'],
+};
+```
+
+## 콘텐츠 동기화
+
+1. Notion(`site.notionSource`, 개별 페이지 URL)에서 요약·기여·기간·링크 추출.
+2. `src/data/portfolio.ts`의 `projects[]`에 반영 — 경력 → `professional`, 프로젝트·OSS → `personal` / `web`.
+3. `featuredProjectId` 변경 시 해당 `id`가 `projects`에 있고 Hero 링크가 깨지지 않는지 확인.
+4. 에이전트 할 일 URL은 `.result/Todo.md`에 둘 수 있음 (앱 빌드와 무관).
+
+## 프로젝트 이미지
+
+- 데이터: `projects[].images?: { src, alt }[]` — `src`는 `public/` 기준(`resources/projects/…`), 확장자는 **WebP** 권장.
+- 표시: `ProjectPage` Photos — `publicUrl(image.src)`; 사진만 나열할 때 **`ul`/`li` 사용하지 않음**.
+- 추가 절차: 원본을 `public/resources/projects/`에 넣은 뒤 `npm run optimize-images`(JPG/PNG→WebP, max 1400px, 원본 삭제) → `portfolio.ts`에 `.webp` 경로·`alt` 반영.
+
+## 제거된 섹션 (재추가 금지, 사용자 요청 전)
+
+- Contact, Writing — 컴포넌트·`navLinks`·관련 데이터 없음.
 
 ## 환경·실행
 
-- 설정: N/A
-- 로컬: `result/README.md` 이식 절차 참고
-- 테스트: `echo "no test suite — template repo"`
-- RULE-02 검사: N/A
+- 로컬: `npm install` → `npm run dev` (Bash PATH 이슈 시 README·`dev:bash`)
+- 빌드: `npm run build` · 배포: GitHub Actions + `vite.config.ts` `base`
+- 이미지 최적화: `npm run optimize-images` (`scripts/optimize-images.mjs`, devDependency `sharp`)
+- RULE-02: 클라이언트 SPA — 메인 스레드 장시간 작업 금지 (일반 웹 관례)
+- RULE-03: N/A (DB 없음)
 
 ## 작업 규칙
 
-1. **활성 지침 변경:** `.cursor/rules/`, `.cursor/skills/` — RULE-05·`@self-update` 또는 사용자 「커서 지침 업데이트」
-2. **원본 템플릿 변경:** `result/cursor-templates/` — 이식용; 변경 후 `.cursor/` 동기화 여부 사용자와 합의
-3. RULE-03: N/A (DB 없음)
-4. RULE-04: N/A (단일 repo, 금지 복제 경로 없음)
-5. 레이어·SOLID: `stack-conventions.mdc`, `solid-principles.mdc` (마크다운·mdc 편집 시)
+1. 텍스트·프로젝트 목록 → `portfolio.ts` 우선.
+2. Projects 그룹/라벨 → `Projects.tsx` + `ProjectCard.tsx` 동기.
+3. `.cursor/` 변경 → RULE-05 · `@self-update` 승인 또는 「커서 지침 업데이트」.
 
 ## 자주 하는 실수
 
-- `result/`만 수정하고 `.cursor/` 미반영 → Cursor가 지침을 로드하지 않음
-- `project-domain.TEMPLATE.mdc` 플레이스홀더를 `.cursor/`에 그대로 둠
-- `stack-conventions`·`solid-principles`의 `globs: "**/*"` 미조정
+- `project-domain.mdc`를 템플릿 repo 설명으로 둔 채 `src/` 작업
+- Contact·Writing·Highlighted 섹션을 task-done 이전 스펙으로 되돌림
+- `web` 카테고리를 UI에서 별도 그룹으로 분리 (의도: Personal work)
+- Notion만 수정하고 `portfolio.ts` 미반영
+- `Hero.tsx`에 `/project/featured-01` 등 **존재하지 않는 id** 하드코딩
+- `featuredProjectId`와 `projects[].id` 불일치
+- about·hero 등 **방문자 문단**에 `portfolio.ts` 경로·「업데이트하세요」 유지보수 문구 (→ 주석·README)
+- 4K JPG를 `portfolio.ts`에 직접 연결하거나 `optimize-images` 없이 커밋 (용량·LCP 악화)
+- 이미지 `src`에 `/` 접두·`BASE_URL` 누락(로컬/배포 경로 불일치) — 반드시 `publicUrl()`
+- Photos 갤러리에 의미 없는 `ul`/`li` 사용
 
 ## 지침 갱신
 

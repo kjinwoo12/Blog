@@ -29,18 +29,9 @@ export PATH="/c/Program Files/nodejs:$PATH"
 
 1. 저장소 **Settings → Pages → Build and deployment** 에서 **GitHub Actions** 선택
 2. `main` 브랜치에 push 시 [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) 이 빌드·배포
-3. 사이트 URL: `https://<username>.github.io/Portfolio/`
+3. 사이트 URL: `https://kjinwoo12.github.io/Blog/`
 
-> 저장소 이름이 `Portfolio` 가 아니면 `vite.config.ts` 의 `base` 경로를 맞춰 수정하세요.
-
-## 콘텐츠 수정
-
-Notion 원본: [포트폴리오 Notion](https://tidal-tortellini-5a0.notion.site/0887482f44bc8240becf81bae5d6b7d4)
-
-| 항목 | 파일 |
-|------|------|
-| 이름·연락처·소개·프로젝트·글 | [`src/data/portfolio.ts`](src/data/portfolio.ts) |
-| 참고 디자인 | [`References.md`](References.md) |
+> 저장소 이름이 `Blog` 가 아니면 `vite.config.ts` 의 `base` 경로를 맞춰 수정하세요.
 
 ## 스택
 
