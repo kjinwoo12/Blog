@@ -6,15 +6,6 @@ export function Hero() {
   return (
     <section className={styles.hero} aria-label="소개">
       <div className="container">
-        <motion.p
-          className={styles.greeting}
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          {hero.greeting}
-        </motion.p>
-
         <motion.h1
           className={styles.headline}
           initial={{ opacity: 0, y: 20 }}

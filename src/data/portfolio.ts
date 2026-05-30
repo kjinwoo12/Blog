@@ -40,15 +40,10 @@ export const site = {
   name: '김진우',
   title: 'Game & Web Developer',
   tagline: '언리얼 · 유니티 · 웹으로 만드는 인터랙티브 경험',
-  email: 'your.email@example.com',
   github: 'https://github.com/KimJinWoo',
-  linkedin: '',
-  notionSource:
-    'https://tidal-tortellini-5a0.notion.site/0887482f44bc8240becf81bae5d6b7d4',
 };
 
 export const hero = {
-  greeting: '안녕하세요,',
   headline: ['게임 클라이언트와', '웹 경험을 설계합니다'],
   description:
     '언리얼 엔진과 유니티에서 게임플레이·시스템을 구현하고, React 기반 웹으로 도구와 포트폴리오를 만듭니다. 기술 블로그처럼 읽히는 문서화와, 플레이어블한 완성도를 함께 추구합니다.',
@@ -86,15 +81,17 @@ export const skillGroups: SkillGroup[] = [
   {
     label: 'Web & Mobile',
     items: [
+      'HTML/CSS3',
+      'JavaScript',
       'React',
       'TypeScript',
-      'JavaScript',
       'Angular',
       'Vite',
       'Electron',
       'Node.js',
       'Android / AOSP',
       'Java',
+      'REST API',
     ],
   },
   {
@@ -310,6 +307,12 @@ export const projects: Project[] = [
       {
         label: 'Repository',
         href: 'https://github.com/kjinwoo12/UE5_PerspectiveMinimap',
+      },
+    ],
+    images: [
+      {
+        src: 'resources/projects/PerspectiveMinimap_01.webp',
+        alt: 'UE5 Perspective Minimap — 원근 미니맵 위 경로·웨이포인트 표시',
       },
     ],
     accent: '#34d399',
