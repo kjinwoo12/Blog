@@ -130,15 +130,20 @@ export const projects: Project[] = [
     category: 'professional',
     tags: ['Unreal Engine', 'Unity', 'Teaching'],
     summary:
-      '2025년 6월부터 언리얼·유니티·프로그래밍 강사로 근무 중입니다.',
+      '2025년 6월부터 언리얼·유니티·프로그래밍 강사로 근무 중입니다. 원내 5일 게임잼 지도 강사 경험이 있습니다.',
     highlights: [
       '언리얼·유니티·프로그래밍 정규 강의',
+      '원내 5일 게임잼 지도 강사',
       '논산문화예술전문학교 데일리 클래스(연 1~4회)',
       '목원대학교 언리얼5 강의',
     ],
     role: 'Instructor',
     period: '2025-06 — 현재',
     images: [
+      {
+        src: 'resources/projects/SBS_01.webp',
+        alt: 'SBS게임아카데미 원내 게임잼 — 팀 발표·지도 강의 장면',
+      },
       {
         src: 'resources/projects/Nonsan_01.webp',
         alt: '논산문화예술전문학교 데일리 클래스 — 강의실 강의 장면',
