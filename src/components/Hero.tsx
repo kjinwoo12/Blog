@@ -3,8 +3,6 @@ import { hero, site } from '../data/portfolio';
 import styles from './Hero.module.css';
 
 export function Hero() {
-  const featured = projects.find((p) => p.featured);
-
   return (
     <section className={styles.hero} aria-label="소개">
       <div className="container">

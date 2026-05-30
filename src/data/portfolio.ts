@@ -266,6 +266,12 @@ export const projects: Project[] = [
         href: 'https://github.com/kjinwoo12/UE5_PerspectiveMinimap',
       },
     ],
+    images: [
+      {
+        src: 'resources/projects/PerspectiveMinimap_01.webp',
+        alt: 'UE5 Perspective Minimap — 원근 미니맵 위 경로·웨이포인트 표시',
+      },
+    ],
     accent: '#34d399',
   },
   {
